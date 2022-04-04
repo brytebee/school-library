@@ -9,7 +9,7 @@ In this project, I have built a tool for a library to record what books are in t
 
 ## Getting started
 
-1. [Clone the project](git@github.com:Mithi-code/-Enumerable.git)
+1. [Clone the project](https://github.com/brytebee/school-library.git)
 2. Installing the packages by running `bundle install`
 3. On the cmd run `ruby <filename>.rb`
 
