@@ -26,17 +26,11 @@ Load the page and enjoy!
 - Twitter: [@brytebee](https://twitter.com/brytebee)
 - LinkedIn: [brytebee](https://www.linkedin.com/in/brytebee/)
 
-👤 **Mithlesh Kumar**
-
-- GitHub: [@Mithi-code](https://github.com/Mithi-code)
-- Twitter: [@LazyMithlesh](https://twitter.com/LazyMithlesh)
-- LinkedIn: [@mithicode](https://linkedin.com/in/mithicode)
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Mithi-code/-Enumerable/issues) here 😏😏.
+Feel free to check the [issues page](https://github.com/brytebee/school-library/issues) here 😏😏.
 
 ## Show your support
 
