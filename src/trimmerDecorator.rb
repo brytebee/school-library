@@ -1,0 +1,2 @@
+class TrimmerDecorator
+end
