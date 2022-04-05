@@ -29,7 +29,7 @@ end
 
 person = Person.new(22, 'maximilianus')
   puts person.correct_name
-  capitalizedPerson = CapitalizeDecorator.new(person)
+  capitalizedPerson = Capitalize_decorator.new(person)
   puts capitalizedPerson.correct_name
   # capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
   # capitalizedTrimmedPerson.correct_name
