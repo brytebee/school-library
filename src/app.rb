@@ -1,3 +1,4 @@
+welcome = 'Welcome to School Library App'
 option = "
 1. List all books.
 2. List all people.
