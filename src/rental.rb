@@ -6,5 +6,6 @@ class Rental
     @date = date
 
     @person = person
+    @person.rentals << self
   end
 end
