@@ -1,2 +1,4 @@
-class Rental  
+class Rental
+  def initialize  
+  end
 end
