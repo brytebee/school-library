@@ -1,4 +1,5 @@
 class Rental
-  def initialize  
+  def initialize(date)
+    @date = date
   end
 end
