@@ -1,4 +1,6 @@
 require_relative 'rental'
+require 'date'
+
 class Book
   attr_accessor :title, :author
   attr_reader :rentals
@@ -7,9 +9,10 @@ class Book
     @title = title
     @author = author
     @rentals = []
+    @date = DateTime.now.to_s
   end
 
   def add_rental(person, date)
-    Rental.new(date, person,  self)
+    Rental.new(@date, person,  self)
   end
 end
