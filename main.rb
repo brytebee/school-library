@@ -1,5 +1,4 @@
-#! /usr/bin/env ruby
-require_relative 'app'
+require './src/classes/app'
 
 def main
   app = App.new
