@@ -17,3 +17,24 @@ def list_of_options
   puts '6 - List all rentals for a given person id'
   puts '7 - Exit'
 end
+
+def option(input)
+  case input
+  when '1'
+    list_all_books
+  when '2'
+    list_all_people
+  when '3'
+    create_person
+  when '4'
+    create_book
+  when '5'
+    create_rental
+  when '6'
+    list_all_rentals
+  else
+    puts 'Please enter a number between 1 and 7.'
+  end
+end
+
+main
