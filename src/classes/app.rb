@@ -19,6 +19,7 @@ class App
       if input == '7'
         puts
         puts 'Thank You for using my School Library!'
+        puts 'Built with 💖 by Atsighi Bright'
         break
       end
 
@@ -60,7 +61,7 @@ class App
       student = Student.new(age, name, parent_permission: false)
       @people << student
       puts
-      puts 'Student created successfully'
+      puts "Student #{name}, created successfully"
     end
   end
 
@@ -76,7 +77,7 @@ class App
     teacher = Teacher.new(age, name, specialization)
     @people << teacher
     puts
-    puts 'Teacher created successfully'
+    puts "Teacher #{name}, created successfully"
   end
 
   def list_all_people
