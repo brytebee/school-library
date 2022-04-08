@@ -38,4 +38,23 @@ class App
       puts 'Invalid input. Try again'
     end
   end
+
+  def create_student
+    puts 'Create a new student'
+    print 'Enter student age: '
+    age = gets.chomp.to_i
+    print 'Enter name: '
+    name = gets.chomp
+    print 'Has parent permission? [Y/N]: '
+    parent_permission = gets.chomp.downcase
+    case parent_permission
+    when 'n'
+      Student.new(age, name, parent_permission: false)
+      puts 'Student doesnt have parent permission, cant rent books'
+    when 'y'
+      student = Student.new(age, name, parent_permission: false)
+      @people << student
+      puts 'Student created successfully'
+    end
+  end
 end
