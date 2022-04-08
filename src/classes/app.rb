@@ -70,4 +70,12 @@ class App
     @people << teacher
     puts 'Teacher created successfully'
   end
+
+  def list_all_people
+    puts 'Database is empty! Add a person.' if @people.empty?
+    @people.each do |person|
+      puts "[#{person.class.name}] Age: #{person.age}, Name: #{person.name}
+      id: #{person.id}"
+    end
+  end
 end
