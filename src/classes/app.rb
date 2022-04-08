@@ -94,7 +94,7 @@ class App
     puts 'Create a new book'
     print 'Enter title: '
     title = gets.chomp
-    puts 'Enter author: '
+    print 'Enter author: '
     author = gets
     book = Book.new(title, author)
     @books.push(book)
@@ -138,7 +138,7 @@ class App
     puts
     puts 'Rented Books:'
     @rentals.each do |rental|
-      puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}" if rental.person.id == id 
+      puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}" if rental.person.id == id 
     end
   end
 end
