@@ -6,6 +6,9 @@ In this project, I built a tool for a library to record the books in the library
 - Add new books.
 - Save records of who borrowed a given book and when.
 
+## Demo
+![School_library](https://user-images.githubusercontent.com/27709832/162444449-0cf961e4-dedb-4499-81c2-86614e51e084.gif)
+
 ## Built With
 
 - Ruby
