@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-# require './src/classes/student'
-
-student = {age: 10, classroom: '4B', name: 'Bright'}
-puts student
-# puts student.classroom
-# puts student.name
