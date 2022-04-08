@@ -17,6 +17,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
+        puts
         puts 'Thank You for using my School Library!'
         break
       end
@@ -26,6 +27,7 @@ class App
   end
 
   def create_person
+    puts
     print 'To create a student, press 1, to create a teacher, press 2 : '
     option = gets.chomp
 
@@ -35,11 +37,13 @@ class App
     when '2'
       create_teacher
     else
+      puts
       puts 'Invalid input. Try again'
     end
   end
 
   def create_student
+    puts
     puts 'Create a new student'
     print 'Enter student age: '
     age = gets.chomp.to_i
@@ -50,15 +54,18 @@ class App
     case parent_permission
     when 'n'
       Student.new(age, name, parent_permission: false)
+      puts
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
       student = Student.new(age, name, parent_permission: false)
       @people << student
+      puts
       puts 'Student created successfully'
     end
   end
 
   def create_teacher
+    puts
     puts 'Create a new teacher'
     print 'Enter teacher age: '
     age = gets.chomp.to_i
@@ -68,10 +75,12 @@ class App
     name = gets.chomp
     teacher = Teacher.new(age, name, specialization)
     @people << teacher
+    puts
     puts 'Teacher created successfully'
   end
 
   def list_all_people
+    puts
     puts 'Database is empty! Add a person.' if @people.empty?
     @people.each do |person|
       puts "[#{person.class.name}] Age: #{person.age}, Name: #{person.name}
@@ -79,7 +88,8 @@ class App
     end
   end
 
-  def create_book()
+  def create_book
+    puts
     puts 'Create a new book'
     print 'Enter title: '
     title = gets.chomp
@@ -87,10 +97,12 @@ class App
     author = gets
     book = Book.new(title, author)
     @books.push(book)
+    puts
     puts "Book #{title} created successfully."
   end
 
   def list_all_books
+    puts
     puts 'Database is empty! Add a book.' if @books.empty?
     @books.each { |book| puts "[Book] Title: #{book.title}, Author: #{book.author}" }
   end
@@ -114,6 +126,7 @@ class App
     rental = Rental.new(date, @people[person_id], @books[book_id])
     @rentals << rental
 
+    puts
     puts 'Rental created successfully'
   end
 
@@ -121,6 +134,7 @@ class App
     print 'To see person rentals enter the person ID: '
     id = gets.chomp.to_i
 
+    puts
     puts 'Rented Books:'
     @rentals.each do |rental|
       puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}" if rental.person.id == id 

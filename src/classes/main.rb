@@ -33,6 +33,7 @@ def option(input)
   when '6'
     list_all_rentals
   else
+    puts
     puts 'Please enter a number between 1 and 7.'
   end
 end
