@@ -15,7 +15,7 @@ class App
   def console_entry_point
     puts 'Welcome to my School Library!'
     until list_of_options
-      input = gets.chomp
+      input = gets.chomp.to_i
       if input == '7'
         puts
         puts 'Thank You for using my School Library!'
