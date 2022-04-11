@@ -12,6 +12,59 @@ class App
     @rentals = []
   end
 
+  def console_entry_point
+    puts 'Welcome to my School Library!'
+    until list_of_options
+      input = gets.chomp
+      if input == '7'
+        puts
+        puts 'Thank You for using my School Library!'
+        puts 'Built with 💖 by Atsighi Bright'
+        break
+      end
+
+      option input
+    end
+  end
+
+  def create_person
+    puts
+    print 'To create a student, press 1, to create a teacher, press 2 : '
+    option = gets.chomp
+
+    case option
+    when '1'
+      create_student
+    when '2'
+      create_teacher
+    else
+      puts
+      puts 'Invalid input. Try again'
+    end
+  end
+
+  def create_student
+    puts
+    puts 'Create a new student'
+    print 'Enter student age: '
+    age = gets.chomp.to_i
+    print 'Enter name: '
+    name = gets.chomp
+    print 'Has parent permission? [Y/N]: '
+    parent_permission = gets.chomp.downcase
+    case parent_permission
+    when 'n'
+      Student.new(age, name, parent_permission: false)
+      puts
+      puts 'Student doesnt have parent permission, cant rent books'
+    when 'y'
+      student = Student.new(age, name, parent_permission: false)
+      @people << student
+      puts
+      puts "Student #{name}, created successfully"
+    end
+  end
+
   def list_all_books
     puts
     puts 'Database is empty! Add a book.' if @books.empty?
