@@ -65,6 +65,43 @@ class App
     end
   end
 
+  def create_teacher
+    puts
+    puts 'Create a new teacher'
+    print 'Enter teacher age: '
+    age = gets.chomp.to_i
+    print 'Enter teacher specialization: '
+    specialization = gets.chomp
+    print 'Enter teacher name: '
+    name = gets.chomp
+    teacher = Teacher.new(age, name, specialization)
+    @people << teacher
+    puts
+    puts "Teacher #{name}, created successfully"
+  end
+
+  def list_all_people
+    puts
+    puts 'Database is empty! Add a person.' if @people.empty?
+    @people.each do |person|
+      puts "[#{person.class.name}] Age: #{person.age}, Name: #{person.name}
+      id: #{person.id}"
+    end
+  end
+
+  def create_book
+    puts
+    puts 'Create a new book'
+    print 'Enter title: '
+    title = gets.chomp
+    print 'Enter author: '
+    author = gets
+    book = Book.new(title, author)
+    @books.push(book)
+    puts
+    puts "Book #{title} created successfully."
+  end
+
   def list_all_books
     puts
     puts 'Database is empty! Add a book.' if @books.empty?
