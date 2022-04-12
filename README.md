@@ -33,6 +33,18 @@ Load the page and enjoy!
 - Twitter: [@brytebee](https://twitter.com/brytebee)
 - LinkedIn: [brytebee](https://www.linkedin.com/in/brytebee/)
 
+👤 **Banlon Jones**
+
+- Github: [banlon-jones](https://github.com/banlon-jones)
+- Twitter: [@banlonj](https://twitter.com/banlonjones)
+- LinkedIn: [banlon jones](https://www.linkedin.com/in/banlon-jones-b0205812a)
+
+👤 **Samuel Chimfwembe**
+
+- GitHub: [@mwapsam](https://github.com/Mwapsam)
+- Twitter: [@mwapesamuel4](https://twitter.com/mwapesamuel4)
+- LinkedIn: [mwapsam](https://www.linkedin.com/in/mwapsam/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
