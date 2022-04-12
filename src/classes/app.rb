@@ -66,7 +66,7 @@ class App
       puts
       puts "Student #{name}, created successfully"
     else
-      puts "invalid input"
+      puts 'invalid input'
     end
   end
 
@@ -150,7 +150,7 @@ class App
   end
 
   def save_people
-    person_write = @people.map { |person|
+    person_write = @people.map do |person|
       if person.instance_of?(Student)
         {
           name: person.name,
@@ -163,10 +163,9 @@ class App
           specialization: person.specialization
         }
       end
-    }
+    end
 
-    File.open('./src/data/people.json', 'w') { |file| file.puts(JSON.pretty_generate(person_write))}
-
+    File.open('./src/data/people.json', 'w') { |file| file.puts(JSON.pretty_generate(person_write)) }
   end
 
   def read_person_file
