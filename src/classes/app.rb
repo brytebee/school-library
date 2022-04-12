@@ -4,12 +4,14 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
+require 'json'
 
 class App
   def initialize
     @books = []
     @people = []
     @rentals = []
+    read_person_file
   end
 
   def console_entry_point
@@ -41,6 +43,7 @@ class App
       puts
       puts 'Invalid input. Try again'
     end
+    save_people
   end
 
   def create_student
@@ -62,6 +65,8 @@ class App
       @people << student
       puts
       puts "Student #{name}, created successfully"
+    else
+      puts "invalid input"
     end
   end
 
@@ -141,6 +146,41 @@ class App
       if rental.person.id == id
         puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
       end
+    end
+  end
+
+  def save_people
+    person_write = @people.map { |person|
+      if person.instance_of?(Student)
+        {
+          name: person.name,
+          age: person.age
+        }
+      else
+        {
+          name: person.name,
+          age: person.age,
+          specialization: person.specialization
+        }
+      end
+    }
+
+    File.open('./src/data/people.json', 'w') { |file| file.puts(JSON.pretty_generate(person_write))}
+
+  end
+
+  def read_person_file
+    if File.exist?('./src/data/people.json')
+      persons = JSON.parse(File.read('./src/data/people.json'))
+      persons.map do |person|
+        if person['specialization']
+          Teacher.new(person['age'], person['specialization'], person['name'])
+        else
+          Student.new(person['age'], person['classroom'], person['name'])
+        end
+      end
+    else
+      []
     end
   end
 end

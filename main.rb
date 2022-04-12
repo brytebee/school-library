@@ -1,8 +1,10 @@
 require './src/classes/app'
 
 def main
+  # puts File.exist?('./src/data/people.json')
   app = App.new
   app.console_entry_point
+
 end
 
 def list_of_options
