@@ -12,6 +12,9 @@ module PreserveData
 
   def load_books
     return [] unless File.exists?('./src/store/books.json')
-    
+
+    JSON.parse(File.read('./src/store/books.json')) do |book|
+      Book.new(book['title'], book['author'])
+    end
   end
 end
