@@ -4,8 +4,10 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
+require_relative 'rentalstore'
 
 class App
+  include Rentalstore
   def initialize
     @books = []
     @people = []
@@ -17,6 +19,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
+        save_rental
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -137,10 +140,26 @@ class App
 
     puts
     puts 'Rented Books:'
+    # @rentals.each do |rental|
+    #   if rental.person.id == id
+    #     puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
+    #   end
+    # end
+    rentaldata = Rentalstore.new.read_rentals
+    rentaldata.each do |rental|
+      puts "Date: #{rental.date}, Book '#{rental.book.title}' to #{rental.person.id}" if rental.person.id == id
+    end
+  end
+
+  def save_rental
+    data = []
     @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
-      end
+      data << {
+        date: rental.date,
+        book_id: rental.book.title,
+        person_id: rental.person.id
+      }
+      Rentalstore.new.persist(data)
     end
   end
 end
