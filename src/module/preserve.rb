@@ -11,6 +11,7 @@ module PreserveData
   end
 
   def load_books
+    return [] unless File.exists?('./src/store/books.json')
     
   end
 end
