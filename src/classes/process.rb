@@ -31,9 +31,9 @@ module ProcessData
     fetch_data('people').map do |person|
       case person['class_name']
       when 'Student'
-        Student.new(person['age'], person['parent_permission'], person['name'])
+        Student.new(person['age'], person['name'], person['parent_permission'])
       when 'Teacher'
-        Teacher.new(person['specialization'], person['age'], person['name'])
+        Teacher.new(person['age'], person['name'], person['specialization'])
       else
         []
       end

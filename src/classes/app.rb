@@ -4,18 +4,17 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
-require_relative 'rentalstore'
+# require_relative 'rentalstore'
 require_relative 'process'
 require 'json'
 
 class App
-  include Rentalstore
+  # include Rentalstore
   include ProcessData
   def initialize
     @books = populate_books
     @people = populate_people
     @rentals = populate_rentals(@people, @books)
-    # @rentals = load_rentals
   end
 
   def console_entry_point
@@ -23,7 +22,6 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
-        save_rental
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -82,11 +80,15 @@ class App
     print 'Enter teacher age: '
     age = gets.chomp.to_i
     print 'Enter teacher specialization: '
+    stored_people = fetch_data('people')
     specialization = gets.chomp
     print 'Enter teacher name: '
     name = gets.chomp
     teacher = Teacher.new(age, name, specialization)
-    @people << teacher
+    @people.push(teacher)
+    person = { id: teacher.id, name: teacher.name, age: teacher.age, class_name: 'Teacher' }
+    stored_people.push(person)
+    update_data('people', stored_people)
     puts
     puts "Teacher #{name}, created successfully"
   end
@@ -142,7 +144,6 @@ class App
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
     rental_data = { date: date, book_index: book_id, person_index: person_id }
-    puts "#{@rentals}"
       @rentals.push(rental)
       stored_rentals.push(rental_data)
       update_data('rentals', stored_rentals)
@@ -159,7 +160,9 @@ class App
     puts
     puts 'Rented Books:'
     @rentals.each do |rental|
+      if rental.person.id.to_i == id
         puts "Date: #{rental.date}, Book '#{rental.books.title}' by #{rental.books.author} to #{rental.person.name}"
+      end
     end
   end
 end
