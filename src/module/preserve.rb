@@ -9,4 +9,8 @@ module PreserveData
       file.write(JSON.generate(data))
     end
   end
+
+  def load_books
+    
+  end
 end
