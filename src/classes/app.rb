@@ -12,9 +12,8 @@ class App
   include PreserveData
   def initialize
     @books = load_books
-    @people = []
+    @people = read_person_file
     @rentals = []
-    read_person_file
   end
 
   def console_entry_point
@@ -23,6 +22,7 @@ class App
       input = gets.chomp
       if input == '7'
         save_books
+        save_people
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -47,7 +47,6 @@ class App
       puts
       puts 'Invalid input. Try again'
     end
-    save_people
   end
 
   def create_student
