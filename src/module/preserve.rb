@@ -2,7 +2,7 @@ module PreserveData
   def save_books
     data = []
     @books.each do |book|
-      data << {title: book.title, author: book.author}
+      data.push({author: book.author, title: book.title})
     end
 
     File.open('./src/store/books.json', 'w') do |file|
@@ -13,8 +13,8 @@ module PreserveData
   def load_books
     return [] unless File.exists?('./src/store/books.json')
 
-    JSON.parse(File.read('./src/store/books.json')) do |book|
-      Book.new(book['title'], book['author'])
+    JSON.parse(File.read('./src/store/books.json')).map do |book|
+      Book.new(book['author'], book['title'])
     end
   end
 end

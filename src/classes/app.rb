@@ -9,7 +9,6 @@ require './src/module/preserve'
 
 class App
   include PreserveData
-  
   def initialize
     @books = load_books
     @people = []
