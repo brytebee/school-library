@@ -5,13 +5,15 @@ require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'rentalstore'
+require 'json'
 
 class App
   include Rentalstore
   def initialize
     @books = []
     @people = []
-    @rentals = []
+    # @rentals = []
+    @rentals = load_rentals
   end
 
   def console_entry_point
@@ -98,7 +100,7 @@ class App
     print 'Enter title: '
     title = gets.chomp
     print 'Enter author: '
-    author = gets
+    author = gets.chomp
     book = Book.new(title, author)
     @books.push(book)
     puts
@@ -140,26 +142,10 @@ class App
 
     puts
     puts 'Rented Books:'
-    # @rentals.each do |rental|
-    #   if rental.person.id == id
-    #     puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
-    #   end
-    # end
-    rentaldata = Rentalstore.new.read_rentals
-    rentaldata.each do |rental|
-      puts "Date: #{rental.date}, Book '#{rental.book.title}' to #{rental.person.id}" if rental.person.id == id
-    end
-  end
-
-  def save_rental
-    data = []
     @rentals.each do |rental|
-      data << {
-        date: rental.date,
-        book_id: rental.book.title,
-        person_id: rental.person.id
-      }
-      Rentalstore.new.persist(data)
+      if rental.person.id == id
+        puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
+      end
     end
   end
 end
