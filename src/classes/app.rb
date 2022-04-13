@@ -5,13 +5,14 @@ require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
 require 'json'
+require './src/person_handle_methods/'
 require './src/module/preserve'
 
 class App
   include PreserveData
   def initialize
     @books = load_books
-    @people = []
+    @people = read_person_file
     @rentals = []
   end
 
@@ -21,6 +22,7 @@ class App
       input = gets.chomp
       if input == '7'
         save_books
+        save_people
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -48,7 +50,6 @@ class App
   end
 
   def create_student
-    puts
     puts 'Create a new student'
     print 'Enter student age: '
     age = gets.chomp.to_i
@@ -66,6 +67,8 @@ class App
       @people << student
       puts
       puts "Student #{name}, created successfully"
+    else
+      puts 'invalid input'
     end
   end
 
