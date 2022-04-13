@@ -1,36 +1,20 @@
 def save_people
-  # person_write = @people.map do |person|
-  #   if person.instance_of?(Teacher)
-  #     {
-  #       name: person.name,
-  #       age: person.age,
-  #       specialization: person.specialization
-  #     }
-  #   elseif person.instance_of?(Student)
-  #     {
-  #       name: person.name,
-  #       age: person.age
-  #     }      
-  #   end
-  # end
-
-  # File.open('./src/data/people.json', 'w') { |file| file.write(JSON.generate(person_write)) }
-  person_write = []
-  @people.each do |person|
-    if (person.class == Student)
-      person_write << {age: person.age, name: person.name}
-    else
-      person_write << {
-        age: person.age,
+  person_write = @people.map do |person|
+    if person.instance_of?(Teacher)
+      {
         name: person.name,
+        age: person.age,
         specialization: person.specialization
       }
+    else
+      {
+        name: person.name,
+        age: person.age
+      }
     end
-
-    File.open('./src/data/people.json', 'w') { |file| 
-      file.write(JSON.generate(person_write))
-    }
   end
+
+  File.write('./src/data/people.json', JSON.generate(person_write))
 end
 
 def read_person_file
