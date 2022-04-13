@@ -48,7 +48,6 @@ class App
   end
 
   def create_student
-    puts
     puts 'Create a new student'
     print 'Enter student age: '
     age = gets.chomp.to_i
@@ -149,5 +148,4 @@ class App
       end
     end
   end
-
 end
