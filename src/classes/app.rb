@@ -4,10 +4,13 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
+require 'json'
+require './src/module/preserve'
 
 class App
+  include PreserveData
   def initialize
-    @books = []
+    @books = load_books
     @people = []
     @rentals = []
   end
@@ -17,6 +20,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
+        save_books
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -95,9 +99,9 @@ class App
     print 'Enter title: '
     title = gets.chomp
     print 'Enter author: '
-    author = gets
+    author = gets.chomp
     book = Book.new(title, author)
-    @books.push(book)
+    @books << book
     puts
     puts "Book #{title} created successfully."
   end
