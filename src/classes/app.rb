@@ -5,15 +5,17 @@ require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'rentalstore'
+require_relative 'process'
 require 'json'
 
 class App
   include Rentalstore
+  include ProcessData
   def initialize
-    @books = []
-    @people = []
-    # @rentals = []
-    @rentals = load_rentals
+    @books = populate_books
+    @people = populate_people
+    @rentals = populate_rentals(@people, @books)
+    # @rentals = load_rentals
   end
 
   def console_entry_point
@@ -57,17 +59,21 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
+    stored_people = fetch_data('people')
     case parent_permission
     when 'n'
-      Student.new(age, name, parent_permission: false)
+      student = Student.new(age, name, parent_permission: false)
       puts
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, parent_permission: false)
-      @people << student
+      student = Student.new(age, name, parent_permission: true)
       puts
       puts "Student #{name}, created successfully"
     end
+    @people.push(student)
+    person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
+    stored_people.push(person)
+    update_data('people', stored_people)
   end
 
   def create_teacher
@@ -103,6 +109,10 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     @books.push(book)
+    book_data = { title: book.title, author: book.author }
+    stored_books = fetch_data('books')
+    stored_books.push(book_data)
+    update_data('books', stored_books)
     puts
     puts "Book #{title} created successfully."
   end
@@ -115,6 +125,7 @@ class App
 
   def create_rental
     puts 'Select which book you want to rent by entering its number'
+    stored_rentals = fetch_data('rentals')
     @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
 
     book_id = gets.chomp.to_i
@@ -130,7 +141,12 @@ class App
     date = gets.chomp.to_s
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
-    @rentals << rental
+    rental_data = { date: date, book_index: book_id, person_index: person_id }
+    puts "#{@rentals}"
+      @rentals.push(rental)
+      stored_rentals.push(rental_data)
+      update_data('rentals', stored_rentals)
+
 
     puts
     puts 'Rental created successfully'
@@ -143,9 +159,7 @@ class App
     puts
     puts 'Rented Books:'
     @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
-      end
+        puts "Date: #{rental.date}, Book '#{rental.books.title}' by #{rental.books.author} to #{rental.person.name}"
     end
   end
 end
