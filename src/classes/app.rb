@@ -4,10 +4,12 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
+# require_relative 'rentalstore'
 require_relative 'process'
 require 'json'
 
 class App
+  # include Rentalstore
   include ProcessData
   def initialize
     @books = populate_books
@@ -20,7 +22,6 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
-        save_books
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -47,20 +48,6 @@ class App
     end
   end
 
-  def student_creation(age, name, parent_permission)
-    case parent_permission
-    when 'n'
-      student = Student.new(age, name, parent_permission: false)
-      puts 'Student doesnt have parent permission, cant rent books'
-    when 'y'
-      student = Student.new(age, name, parent_permission: true)
-      puts "Student #{name}, created successfully"
-    else
-      puts 'invalid input'
-    end
-    student
-  end
-
   def create_student
     puts 'Create a new student'
     print 'Enter student age: '
@@ -69,17 +56,19 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
+    stored_people = fetch_data('people')
     case parent_permission
     when 'n'
-      student = Student.new(age, name, id, parent_permission: false)
+      student = Student.new(age, name, parent_permission: false)
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, id, parent_permission: true)
+      student = Student.new(age, name, parent_permission: true)
       puts "Student #{name}, created successfully"
-    else
-      puts 'invalid input'
     end
     @people.push(student)
+    person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
+    stored_people.push(person)
+    update_data('people', stored_people)
   end
 
   def create_teacher
