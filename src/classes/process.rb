@@ -3,68 +3,21 @@ require_relative 'teacher'
 require_relative 'rental'
 
 module ProcessData
-  def fetch_data(file)
-    file_path = "./src/store/#{file}.json"
-    File.new(file_path, 'w+') unless File.exist?(file_path)
-    File.write(file_path, '[]') if File.empty?(file_path)
-    contents = File.read(file_path)
-    JSON.parse(contents)
-  end
-
-  def update_data(file, data)
-    opts = {
-      array_nl: "\n",
-      object_nl: "\n",
-      indent: '  ',
-      space_before: ' ',
-      space: ' '
-    }
-    json_data = JSON.generate(data, opts)
-    File.write("./src/store/#{file}.json", json_data)
-  end
-
-  def populate_books
-    fetch_data('books').map { |book| Book.new(book['title'], book['author']) }
-  end
-
-  def populate_people
-    fetch_data('people').map do |person|
-      case person['class_name']
-      when 'Student'
-        Student.new(person['age'], person['name'], person['parent_permission'])
-      when 'Teacher'
-        Teacher.new(person['age'], person['name'], person['specialization'])
-      else
-        []
-      end
-    end
-  end
-
   def save_rentals
     data = []
     @rentals.each do |rental|
-      data.push({ date: rental.date, person_id: rental[@person['person_id']], book_author: rental[@book['book_author']] })
+      data.push({ date: rental.date, person_id: rental[@person['person_id']],
+                  book_author: rental[@book['book_author']] })
     end
-    # @people.each do |person|
-    #   data.push({ person_id: person.id})
-    # end
-    # @books.each do |book|
-    #   data.push({ book_id: book.author})
-    # end
 
     File.write('./src/store/rentals.json', JSON.generate(data))
   end
 
-  def load_rentals(people, books)
+  def load_rentals(_people, _books)
     return [] unless File.exist?('./src/store/rentals.json')
 
     JSON.parse(File.read('./src/store/rentals.json')).map do |rental|
       Rental.new(rental['date'], rental[@person['person_id']], rental[@book['book_author']])
     end
-
-    # stored_rentals = fetch_data('rentals')
-    # stored_rentals.map do |rental|
-    #   Rental.new(rental['date'], rental[`#{people['person_id']}`], rental[`#{books['book_author']}`])
-    # end
   end
 end

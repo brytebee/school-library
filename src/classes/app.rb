@@ -52,36 +52,6 @@ class App
     end
   end
 
-  # def student_creation(age, name, parent_permission)
-  #   case parent_permission
-  #   when 'n'
-  #     student = Student.new(age, name, parent_permission: false)
-  #     puts 'Student doesnt have parent permission, cant rent books'
-  #   when 'y'
-  #     student = Student.new(age, name, parent_permission: true)
-  #     puts "Student #{name}, created successfully"
-  #   else
-  #     puts 'invalid input'
-  #   end
-  #   student
-  # end
-
-  # def create_student
-  #   puts 'Create a new student'
-  #   print 'Enter student age: '
-  #   age = gets.chomp.to_i
-  #   print 'Enter name: '
-  #   name = gets.chomp
-  #   print 'Has parent permission? [Y/N]: '
-  #   parent_permission = gets.chomp.downcase
-  #   stored_people = fetch_data('people')
-  #   student_creation(age, name, parent_permission)
-  #   @people.push(student)
-  #   person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
-  #   stored_people.push(person)
-  #   update_data('people', stored_people)
-  # end
-  
   def student_creation(age, name, parent_permission)
     case parent_permission
     when 'n'
@@ -103,22 +73,18 @@ class App
     print 'Enter name: '
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
-    stored_people = fetch_data('people')
     parent_permission = gets.chomp.downcase
     case parent_permission
     when 'n'
-      student = Student.new(age, name, id = rand(0001..300), parent_permission: false)
+      student = Student.new(age, name, id, parent_permission: false)
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, id = rand(001..300), parent_permission: true)
+      student = Student.new(age, name, id, parent_permission: true)
       puts "Student #{name}, created successfully"
     else
       puts 'invalid input'
     end
     @people.push(student)
-    # person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
-    # stored_people.push(person)
-    # update_data('people', stored_people)
   end
 
   def create_teacher
@@ -127,15 +93,11 @@ class App
     print 'Enter teacher age: '
     age = gets.chomp.to_i
     print 'Enter teacher specialization: '
-    stored_people = fetch_data('people')
     specialization = gets.chomp
     print 'Enter teacher name: '
     name = gets.chomp
-    teacher = Teacher.new(age, name, id = rand(001..300), specialization)
-    @people.push(teacher)
-    person = { id: teacher.id, name: teacher.name, age: teacher.age, class_name: 'Teacher' }
-    stored_people.push(person)
-    update_data('people', stored_people)
+    teacher = Teacher.new(age, name, id, specialization)
+    @people << teacher
     puts
     puts "Teacher #{name}, created successfully"
   end
@@ -158,10 +120,6 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     @books.push(book)
-    # book_data = { title: book.title, author: book.author }
-    # stored_books = fetch_data('books')
-    # stored_books.push(book_data)
-    # update_data('books', stored_books)
     puts
     puts "Book #{title} created successfully."
   end
@@ -185,7 +143,7 @@ class App
 
     person_id = gets.chomp.to_i
     puts
-    date = DateTime.now().strftime("%F")
+    date = DateTime.now.strftime('%F')
     puts "Date: Rented on #{date}"
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
@@ -203,49 +161,7 @@ class App
     puts 'Rented Books:'
 
     @rentals.each do |rental|
-      if rental.person.id.to_i == id
-        puts "Date: #{rental.date},  #{rental.person}"
-      end
+      puts "Date: #{rental.date},  #{rental.person}" if rental.person.id.to_i == id
     end
   end
-
-  # def create_rental
-  #   puts 'Select which book you want to rent by entering its number'
-  #   stored_rentals = fetch_data('rentals')
-  #   @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
-
-  #   book_id = gets.chomp.to_i
-
-  #   puts 'Select a person from the list by its number'
-  #   @people.each_with_index do |person, index|
-  #     puts "#{index}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-  #   end
-
-  #   person_id = gets.chomp.to_i
-
-  #   print 'Date: '
-  #   date = gets.chomp.to_s
-
-  #   rental = Rental.new(date, @books[book_id], @people[person_id])
-  #   rental_data = { date: date, book_index: book_id, person_index: person_id }
-  #   @rentals.push(rental)
-  #   stored_rentals.push(rental_data)
-  #   update_data('rentals', stored_rentals)
-
-  #   puts
-  #   puts 'Rental created successfully'
-  # end
-
-  # def list_all_rentals
-  #   print 'To see person rentals enter the person ID: '
-  #   id = gets.chomp.to_i
-
-  #   puts
-  #   puts 'Rented Books:'
-  #   @rentals.each do |rental|
-  #     if rental.person.id == id
-  #       puts "Date: #{rental.date}, Book '#{rental.books.title}' by #{rental.books.author} to #{rental.person.name}"
-  #     end
-  #   end
-  # end
 end

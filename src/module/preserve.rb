@@ -2,7 +2,7 @@ module PreserveData
   def save_books
     data = []
     @books.each do |book|
-      data.push({  title: book.title, author: book.author})
+      data.push({ title: book.title, author: book.author })
     end
 
     File.write('./src/store/books.json', JSON.generate(data))
