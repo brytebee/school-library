@@ -43,7 +43,6 @@ module ProcessData
   def populate_rentals(people, books)
     stored_rentals = fetch_data('rentals')
     stored_rentals.map do |rental|
-      puts rental
       Rental.new(rental['date'], people[rental['person_index']], books[rental['book_index']])
     end
   end

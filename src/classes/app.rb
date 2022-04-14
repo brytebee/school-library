@@ -11,9 +11,10 @@ require './src/module/preserve'
 
 class App
   include ProcessData
+  include PreserveData
   def initialize
-    @rentals = [] || populate_rentals(@people, @books)
-    @books = ProcessData.load_books
+    @rentals = populate_rentals(@people, @books)
+    @books = load_books
     @people = read_person_file
   end
 
@@ -22,7 +23,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
-        # save_books
+        save_books
         save_people
         puts
         puts 'Thank You for using my School Library!'
