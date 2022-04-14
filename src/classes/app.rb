@@ -47,7 +47,6 @@ class App
   end
 
   def create_student
-    puts
     puts 'Create a new student'
     print 'Enter student age: '
     age = gets.chomp.to_i
@@ -59,11 +58,9 @@ class App
     case parent_permission
     when 'n'
       student = Student.new(age, name, parent_permission: false)
-      puts
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
       student = Student.new(age, name, parent_permission: true)
-      puts
       puts "Student #{name}, created successfully"
     end
     @people.push(student)
@@ -142,10 +139,9 @@ class App
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
     rental_data = { date: date, book_index: book_id, person_index: person_id }
-      @rentals.push(rental)
-      stored_rentals.push(rental_data)
-      update_data('rentals', stored_rentals)
-
+    @rentals.push(rental)
+    stored_rentals.push(rental_data)
+    update_data('rentals', stored_rentals)
 
     puts
     puts 'Rental created successfully'
