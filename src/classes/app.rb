@@ -4,12 +4,10 @@ require_relative 'book'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'rental'
-# require_relative 'rentalstore'
 require_relative 'process'
 require 'json'
 
 class App
-  # include Rentalstore
   include ProcessData
   def initialize
     @books = populate_books
@@ -22,6 +20,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
+        save_books
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
