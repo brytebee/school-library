@@ -188,7 +188,7 @@ class App
     print 'Date: '
     date = gets.chomp.to_s
 
-    rental = Rental.new(date, @people[person_id], @books[book_id])
+    rental = Rental.new(date, @books[book_id], @people[person_id])
     rental_data = { date: date, book_index: book_id, person_index: person_id }
     @rentals.push(rental)
     stored_rentals.push(rental_data)
@@ -205,7 +205,7 @@ class App
     puts
     puts 'Rented Books:'
     @rentals.each do |rental|
-      if rental.person.id.to_i == id
+      if rental.person.id == id
         puts "Date: #{rental.date}, Book '#{rental.books.title}' by #{rental.books.author} to #{rental.person.name}"
       end
     end

@@ -1,1 +1,10 @@
-[{"author":"Stenly","title":"Avengers"},{"author":"Bright","title":"Math Guru"},{"author":"Microverse","title":"Digimus"},{"author":"Microverse","title":"Digimus"},{"author":"Micro","title":"Digimus"}]
+[
+  {
+    "title" : "Rich Dad",
+    "author" : "R. Kiyosaki"
+  },
+  {
+    "title" : "Think & Grow Rich",
+    "author" : "Napoleon Hill"
+  }
+]

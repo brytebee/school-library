@@ -2,14 +2,14 @@ def save_people
   person_write = @people.map do |person|
     if person.instance_of?(Teacher)
       {
-        name: person.name,
         age: person.age,
+        name: person.name,
         specialization: person.specialization
       }
     else
       {
-        name: person.name,
-        age: person.age
+        age: person.age,
+        name: person.name
       }
     end
   end

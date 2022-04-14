@@ -1,1 +1,14 @@
-[{"name":"Jing","age":42},{"name":"Kash","age":20},{"name":"Too Old","age":30}]
+[
+  {
+    "id" : 63,
+    "name" : "Brenda",
+    "age" : 19,
+    "class_name" : "Student"
+  },
+  {
+    "id" : 102,
+    "name" : "Ben",
+    "age" : 36,
+    "class_name" : "Teacher"
+  }
+]
