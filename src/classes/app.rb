@@ -50,15 +50,7 @@ class App
     end
   end
 
-  def create_student
-    puts 'Create a new student'
-    print 'Enter student age: '
-    age = gets.chomp.to_i
-    print 'Enter name: '
-    name = gets.chomp
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp.downcase
-    stored_people = fetch_data('people')
+  def student_creation(age, name, parent_permission)
     case parent_permission
     when 'n'
       student = Student.new(age, name, parent_permission: false)
@@ -69,6 +61,19 @@ class App
     else
       puts 'invalid input'
     end
+    student
+  end
+
+  def create_student
+    puts 'Create a new student'
+    print 'Enter student age: '
+    age = gets.chomp.to_i
+    print 'Enter name: '
+    name = gets.chomp
+    print 'Has parent permission? [Y/N]: '
+    parent_permission = gets.chomp.downcase
+    stored_people = fetch_data('people')
+    student_creation(age, name, parent_permission)
     @people.push(student)
     person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
     stored_people.push(person)
