@@ -25,9 +25,9 @@ def read_person_file
   persons = JSON.parse(File.read('./src/store/people.json'))
   persons.map do |person|
     if person['specialization']
-      Teacher.new(person['age'], person['name'], person['specialization'], person['id'])
+      Teacher.new(person['age'], person['name'], person['id'], person['specialization'])
     else
-      Student.new(person['age'], person['name'], person['classroom'], person['id'])
+      Student.new(person['age'], person['name'], person['id'], person['classroom'])
     end
   end
 end

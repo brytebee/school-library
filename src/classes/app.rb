@@ -106,18 +106,18 @@ class App
     parent_permission = gets.chomp.downcase
     case parent_permission
     when 'n'
-      student = Student.new(age, name, parent_permission: false)
+      student = Student.new(age, name, id = rand(0001..300), parent_permission: false)
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, parent_permission: true)
+      student = Student.new(age, name, id = rand(001..300), parent_permission: true)
       puts "Student #{name}, created successfully"
     else
       puts 'invalid input'
     end
     @people.push(student)
-    person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
-    stored_people.push(person)
-    update_data('people', stored_people)
+    # person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
+    # stored_people.push(person)
+    # update_data('people', stored_people)
   end
 
   def create_teacher
@@ -130,7 +130,7 @@ class App
     specialization = gets.chomp
     print 'Enter teacher name: '
     name = gets.chomp
-    teacher = Teacher.new(age, name, specialization)
+    teacher = Teacher.new(age, name, id = rand(001..300), specialization)
     @people.push(teacher)
     person = { id: teacher.id, name: teacher.name, age: teacher.age, class_name: 'Teacher' }
     stored_people.push(person)
@@ -144,7 +144,7 @@ class App
     puts 'Database is empty! Add a person.' if @people.empty?
     @people.each do |person|
       puts "[#{person.class.name}] Age: #{person.age}, Name: #{person.name}
-      id: #{person.id}"
+      Id: #{person.id}"
     end
   end
 
@@ -157,10 +157,10 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     @books.push(book)
-    book_data = { title: book.title, author: book.author }
-    stored_books = fetch_data('books')
-    stored_books.push(book_data)
-    update_data('books', stored_books)
+    # book_data = { title: book.title, author: book.author }
+    # stored_books = fetch_data('books')
+    # stored_books.push(book_data)
+    # update_data('books', stored_books)
     puts
     puts "Book #{title} created successfully."
   end
@@ -183,9 +183,9 @@ class App
     end
 
     person_id = gets.chomp.to_i
-
-    print 'Date: '
-    date = gets.chomp.to_s
+    puts
+    date = DateTime.now().strftime("%F")
+    puts "Date: Rented on #{date}"
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
     @rentals << rental
@@ -200,8 +200,10 @@ class App
 
     puts
     puts 'Rented Books:'
+
     @rentals.each do |rental|
-      if rental.person.id == id
+      puts rental
+      if rental.person.id.to_i == id
         puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
       end
     end
