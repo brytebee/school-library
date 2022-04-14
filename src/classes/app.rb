@@ -6,13 +6,15 @@ require_relative 'teacher'
 require_relative 'rental'
 require_relative 'process'
 require 'json'
+require './src/person_handle_methods/'
+require './src/module/preserve'
 
 class App
   include ProcessData
   def initialize
-    @books = populate_books
-    @people = populate_people
     @rentals = populate_rentals(@people, @books)
+    @books = load_books
+    @people = read_person_file
   end
 
   def console_entry_point
@@ -20,6 +22,8 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
+        save_books
+        save_people
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
@@ -62,6 +66,8 @@ class App
     when 'y'
       student = Student.new(age, name, parent_permission: true)
       puts "Student #{name}, created successfully"
+    else
+      puts 'invalid input'
     end
     @people.push(student)
     person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
