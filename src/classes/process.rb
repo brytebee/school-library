@@ -40,7 +40,22 @@ module ProcessData
     end
   end
 
-  def populate_rentals(people, books)
+  def save_rentals
+    data = []
+    @rentals.each do |rental|
+      data.push({ date: rental.date })
+    end
+    @people.each do |person|
+      data.push({ person_id: person.id})
+    end
+    @books.each do |book|
+      data.push({ book_id: book.author})
+    end
+
+    File.write('./src/store/rentals.json', JSON.generate(data))
+  end
+
+  def load_rentals(people, books)
       
       # {
       #   "date" : "2022-03-01",
@@ -60,7 +75,7 @@ module ProcessData
       #   "class_name" : "Teacher"
       # }
 
-    stored_rentals = fetch_data('rentals')
+    # stored_rentals = fetch_data('rentals')
     stored_rentals.map do |rental|
       Rental.new(rental['date'], rental[`#{people['id']}`], rental[`#{books['author']}`])
     end

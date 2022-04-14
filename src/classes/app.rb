@@ -13,7 +13,7 @@ class App
   include ProcessData
   include PreserveData
   def initialize
-    @rentals = [] || populate_rentals(@people, @books)
+    @rentals = [] || load_rentals(@people, @books)
     @books = load_books
     @people = read_person_file
   end
@@ -25,6 +25,7 @@ class App
       if input == '7'
         save_books
         save_people
+        save_rentals
         puts
         puts 'Thank You for using my School Library!'
         puts 'Built with 💖 by Atsighi Bright'
