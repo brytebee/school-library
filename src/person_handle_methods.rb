@@ -4,12 +4,14 @@ def save_people
       {
         age: person.age,
         name: person.name,
-        specialization: person.specialization
+        specialization: person.specialization,
+        id: person.id.to_s
       }
     else
       {
         age: person.age,
-        name: person.name
+        name: person.name,
+        id: person.id.to_s
       }
     end
   end
@@ -23,9 +25,9 @@ def read_person_file
   persons = JSON.parse(File.read('./src/store/people.json'))
   persons.map do |person|
     if person['specialization']
-      Teacher.new(person['age'], person['name'], person['specialization'])
+      Teacher.new(person['age'], person['name'], person['specialization'], person['id'])
     else
-      Student.new(person['age'], person['name'], person['classroom'])
+      Student.new(person['age'], person['name'], person['classroom'], person['id'])
     end
   end
 end

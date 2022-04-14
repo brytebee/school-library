@@ -41,9 +41,28 @@ module ProcessData
   end
 
   def populate_rentals(people, books)
+      
+      # {
+      #   "date" : "2022-03-01",
+      #   "book_index" : 1,
+      #   "person_index" : 1
+      # }
+
+      # {
+      #   "title" : "Think & Grow Rich",
+      #   "author" : "Napoleon Hill"
+      # }
+
+      # {
+      #   "id" : 102,
+      #   "name" : "Ben",
+      #   "age" : 36,
+      #   "class_name" : "Teacher"
+      # }
+
     stored_rentals = fetch_data('rentals')
     stored_rentals.map do |rental|
-      Rental.new(rental['date'], books[rental['book_index']], people[rental['person_index']])
+      Rental.new(rental['date'], rental[`#{people['id']}`], rental[`#{books['author']}`])
     end
   end
 end
