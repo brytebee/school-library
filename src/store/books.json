@@ -1,1 +1,22 @@
-[{"author":"kskjlk","title":"oilsjd"},{"author":"Anie","title":"Good, Bad, Ugly"}]
+[
+  {
+    "title" : "Avengers",
+    "author" : "Stenly"
+  },
+  {
+    "title" : "Math Guru",
+    "author" : "Bright"
+  },
+  {
+    "title" : "Digimus",
+    "author" : "Microverse"
+  },
+  {
+    "title" : "Digimus",
+    "author" : "Microverse"
+  },
+  {
+    "title" : "Digimus",
+    "author" : "Micro"
+  }
+]

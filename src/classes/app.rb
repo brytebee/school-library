@@ -12,8 +12,8 @@ require './src/module/preserve'
 class App
   include ProcessData
   def initialize
-    @rentals = populate_rentals(@people, @books)
-    @books = load_books
+    @rentals = [] || populate_rentals(@people, @books)
+    @books = ProcessData.load_books
     @people = read_person_file
   end
 
@@ -22,7 +22,7 @@ class App
     until list_of_options
       input = gets.chomp
       if input == '7'
-        save_books
+        # save_books
         save_people
         puts
         puts 'Thank You for using my School Library!'
@@ -50,6 +50,36 @@ class App
     end
   end
 
+  # def student_creation(age, name, parent_permission)
+  #   case parent_permission
+  #   when 'n'
+  #     student = Student.new(age, name, parent_permission: false)
+  #     puts 'Student doesnt have parent permission, cant rent books'
+  #   when 'y'
+  #     student = Student.new(age, name, parent_permission: true)
+  #     puts "Student #{name}, created successfully"
+  #   else
+  #     puts 'invalid input'
+  #   end
+  #   student
+  # end
+
+  # def create_student
+  #   puts 'Create a new student'
+  #   print 'Enter student age: '
+  #   age = gets.chomp.to_i
+  #   print 'Enter name: '
+  #   name = gets.chomp
+  #   print 'Has parent permission? [Y/N]: '
+  #   parent_permission = gets.chomp.downcase
+  #   stored_people = fetch_data('people')
+  #   student_creation(age, name, parent_permission)
+  #   @people.push(student)
+  #   person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
+  #   stored_people.push(person)
+  #   update_data('people', stored_people)
+  # end
+  
   def student_creation(age, name, parent_permission)
     case parent_permission
     when 'n'
@@ -71,9 +101,18 @@ class App
     print 'Enter name: '
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp.downcase
     stored_people = fetch_data('people')
-    student_creation(age, name, parent_permission)
+    parent_permission = gets.chomp.downcase
+    case parent_permission
+    when 'n'
+      student = Student.new(age, name, parent_permission: false)
+      puts 'Student doesnt have parent permission, cant rent books'
+    when 'y'
+      student = Student.new(age, name, parent_permission: true)
+      puts "Student #{name}, created successfully"
+    else
+      puts 'invalid input'
+    end
     @people.push(student)
     person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
     stored_people.push(person)

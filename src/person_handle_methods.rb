@@ -14,13 +14,13 @@ def save_people
     end
   end
 
-  File.write('./src/data/people.json', JSON.generate(person_write))
+  File.write('./src/store/people.json', JSON.generate(person_write))
 end
 
 def read_person_file
-  return [] unless File.exist?('./src/data/people.json')
+  return [] unless File.exist?('./src/store/people.json')
 
-  persons = JSON.parse(File.read('./src/data/people.json'))
+  persons = JSON.parse(File.read('./src/store/people.json'))
   persons.map do |person|
     if person['specialization']
       Teacher.new(person['age'], person['name'], person['specialization'])

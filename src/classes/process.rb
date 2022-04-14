@@ -4,7 +4,7 @@ require_relative 'rental'
 
 module ProcessData
   def fetch_data(file)
-    file_path = "./data/#{file}.json"
+    file_path = "./src/store/#{file}.json"
     File.new(file_path, 'w+') unless File.exist?(file_path)
     File.write(file_path, '[]') if File.empty?(file_path)
     contents = File.read(file_path)
@@ -20,7 +20,7 @@ module ProcessData
       space: ' '
     }
     json_data = JSON.generate(data, opts)
-    File.write("./data/#{file}.json", json_data)
+    File.write("./src/store/#{file}.json", json_data)
   end
 
   def populate_books
@@ -43,6 +43,7 @@ module ProcessData
   def populate_rentals(people, books)
     stored_rentals = fetch_data('rentals')
     stored_rentals.map do |rental|
+      puts rental
       Rental.new(rental['date'], people[rental['person_index']], books[rental['book_index']])
     end
   end
