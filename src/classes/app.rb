@@ -48,8 +48,21 @@ class App
     end
   end
 
+  def student_creation(age, name, parent_permission)
+    case parent_permission
+    when 'n'
+      student = Student.new(age, name, parent_permission: false)
+      puts 'Student doesnt have parent permission, cant rent books'
+    when 'y'
+      student = Student.new(age, name, parent_permission: true)
+      puts "Student #{name}, created successfully"
+    else
+      puts 'invalid input'
+    end
+    student
+  end
+
   def create_student
-    puts
     puts 'Create a new student'
     print 'Enter student age: '
     age = gets.chomp.to_i
@@ -57,21 +70,17 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
-    stored_people = fetch_data('people')
     case parent_permission
     when 'n'
-      student = Student.new(age, name, parent_permission: false)
-      puts
+      student = Student.new(age, name, id, parent_permission: false)
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, parent_permission: true)
-      puts
+      student = Student.new(age, name, id, parent_permission: true)
       puts "Student #{name}, created successfully"
+    else
+      puts 'invalid input'
     end
     @people.push(student)
-    person = { id: student.id, name: student.name, age: student.age, class_name: 'Student' }
-    stored_people.push(person)
-    update_data('people', stored_people)
   end
 
   def create_teacher
@@ -144,10 +153,9 @@ class App
 
     rental = Rental.new(date, @people[person_id], @books[book_id])
     rental_data = { date: date, book_index: book_id, person_index: person_id }
-      @rentals.push(rental)
-      stored_rentals.push(rental_data)
-      update_data('rentals', stored_rentals)
-
+    @rentals.push(rental)
+    stored_rentals.push(rental_data)
+    update_data('rentals', stored_rentals)
 
     puts
     puts 'Rental created successfully'
