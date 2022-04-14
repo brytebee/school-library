@@ -43,41 +43,28 @@ module ProcessData
   def save_rentals
     data = []
     @rentals.each do |rental|
-      data.push({ date: rental.date })
+      data.push({ date: rental.date, person_id: rental[@person['person_id']], book_author: rental[@book['book_author']] })
     end
-    @people.each do |person|
-      data.push({ person_id: person.id})
-    end
-    @books.each do |book|
-      data.push({ book_id: book.author})
-    end
+    # @people.each do |person|
+    #   data.push({ person_id: person.id})
+    # end
+    # @books.each do |book|
+    #   data.push({ book_id: book.author})
+    # end
 
     File.write('./src/store/rentals.json', JSON.generate(data))
   end
 
   def load_rentals(people, books)
-      
-      # {
-      #   "date" : "2022-03-01",
-      #   "book_index" : 1,
-      #   "person_index" : 1
-      # }
+    return [] unless File.exist?('./src/store/rentals.json')
 
-      # {
-      #   "title" : "Think & Grow Rich",
-      #   "author" : "Napoleon Hill"
-      # }
-
-      # {
-      #   "id" : 102,
-      #   "name" : "Ben",
-      #   "age" : 36,
-      #   "class_name" : "Teacher"
-      # }
+    JSON.parse(File.read('./src/store/rentals.json')).map do |rental|
+      Rental.new(rental['date'], rental[@person['person_id']], rental[@book['book_author']])
+    end
 
     # stored_rentals = fetch_data('rentals')
-    stored_rentals.map do |rental|
-      Rental.new(rental['date'], rental[`#{people['id']}`], rental[`#{books['author']}`])
-    end
+    # stored_rentals.map do |rental|
+    #   Rental.new(rental['date'], rental[`#{people['person_id']}`], rental[`#{books['book_author']}`])
+    # end
   end
 end

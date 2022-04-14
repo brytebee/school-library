@@ -203,9 +203,8 @@ class App
     puts 'Rented Books:'
 
     @rentals.each do |rental|
-      puts rental
       if rental.person.id.to_i == id
-        puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author} to #{rental.person.name}"
+        puts "Date: #{rental.date},  #{rental.person}"
       end
     end
   end
