@@ -1,4 +1,4 @@
-require_relative '../src/classes/decorator'
+require '../src/classes/decorator'
 require 'rspec/autorun'
 
 describe Decorator do
@@ -8,7 +8,7 @@ describe Decorator do
     it 'with a name' do
       expect(deco.class).to eq(Decorator)
     end
-    
+
     it 'with a name' do
       expect(deco.nameable).to eq('Joe')
     end

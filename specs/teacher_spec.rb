@@ -1,4 +1,4 @@
-require_relative '../src/classes/teacher'
+require '../src/classes/teacher'
 require 'rspec/autorun'
 
 describe Teacher do
