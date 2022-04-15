@@ -19,11 +19,11 @@ describe Person do
       it 'should have a name' do
         expect(@person.name).to eql('Mwape')
       end
-      
+
       it 'should have a name' do
         expect(@person.can_use_services?).to eql(true)
       end
-      
+
       it 'should have a name' do
         expect(@person2.can_use_services?).to eql(false)
       end
