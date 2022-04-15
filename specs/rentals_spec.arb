@@ -1,0 +1,4 @@
+require_relative '../src/classes/rentals'
+
+describe Rentals do
+end
