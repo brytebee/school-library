@@ -1,5 +1,6 @@
 require_relative '../src/classes/book'
 require_relative '../src/classes/person'
+require 'rspec/autorun'
 
 describe Book do
   context 'before each test in the book class' do

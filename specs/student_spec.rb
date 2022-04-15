@@ -1,4 +1,6 @@
 require_relative '../src/classes/student'
+require 'rspec/autorun'
+
 describe Student do
   context 'Testing the Student class' do
     student = Student.new(17, 'jin', true)

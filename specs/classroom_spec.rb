@@ -1,5 +1,6 @@
-require './src/classes/student'
-require './src/classes/classroom'
+require '../src/classes/student'
+require '../src/classes/classroom'
+require 'rspec/autorun'
 
 describe Classroom do
   before :each do
