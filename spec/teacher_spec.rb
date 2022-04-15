@@ -1,4 +1,4 @@
-require '../src/classes/teacher'
+require './src/classes/teacher'
 
 describe Teacher do
   context 'testing the teacher class' do
@@ -8,12 +8,12 @@ describe Teacher do
     end
 
     it 'should take 3 parameters and return the Teacher object' do
-      expect(@teacher1.instance_of?(Teacher)).should be == true
-      expect(@teacher3.instance_of?(Teacher)).should be == true
+      expect(@teacher1.instance_of?(Teacher)).to be(true)
+      expect(@teacher3.instance_of?(Teacher)).to be(true)
     end
 
     it 'should use service return true' do
-      expect(@teacher1.can_use_services?) == true
+      expect(@teacher1.can_use_services?).to be(true)
     end
   end
 end

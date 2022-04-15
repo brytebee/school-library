@@ -1,4 +1,4 @@
-require '../src/classes/decorator'
+require './src/classes/decorator'
 
 describe Decorator do
   context 'when instantiated' do

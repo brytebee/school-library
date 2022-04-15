@@ -1,4 +1,4 @@
-require '../src/classes/person'
+require './src/classes/person'
 
 describe Person do
   context 'before each test in the person class' do

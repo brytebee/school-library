@@ -1,5 +1,5 @@
-require '../src/classes/book'
-require '../src/classes/person'
+require './src/classes/book'
+require './src/classes/person'
 
 describe Book do
   context 'before each test in the book class' do

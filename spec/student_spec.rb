@@ -1,4 +1,4 @@
-require '../src/classes/student'
+require './src/classes/student'
 
 describe Student do
   context 'Testing the Student class' do

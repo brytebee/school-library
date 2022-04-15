@@ -1,6 +1,6 @@
-require '../src/classes/rental'
-require '../src/classes/person'
-require '../src/classes/book'
+require './src/classes/rental'
+require './src/classes/person'
+require './src/classes/book'
 
 describe Rental do
   context 'when instantiated' do
