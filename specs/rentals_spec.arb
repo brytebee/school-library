@@ -30,5 +30,13 @@ describe Rental do
       @rental = Rental.new(@date, @book, @person)
       @rental2 = Rental.new(@date, @book2, @person)
     end
+
+    it 'has the class of Rental' do
+      expect(@rental.instance_of?(Rental)) == true
+    end
+
+    it 'has the class of Rental' do
+      expect(@person.rentals.length).to be(2)
+    end
   end
 end
