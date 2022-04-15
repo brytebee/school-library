@@ -1,9 +1,7 @@
-require_relative '../src/classes/rental'
+require_relative '../src/classes/decorator'
 require 'rspec/autorun'
-require '../src/classes/person'
-require '../src/classes/book'
 
-describe Rental do
+describe Decorator do
   context 'when instantiated' do
     it 'with date, book, and student should create a rental' do
       person = Person.new(23, 'Joe')
