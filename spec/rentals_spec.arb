@@ -1,5 +1,4 @@
 require '../src/classes/rental'
-require 'rspec/autorun'
 require '../src/classes/person'
 require '../src/classes/book'
 

@@ -1,5 +1,4 @@
-require_relative '../src/classes/student'
-require 'rspec/autorun'
+require '../src/classes/student'
 
 describe Student do
   context 'Testing the Student class' do

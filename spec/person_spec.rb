@@ -1,5 +1,4 @@
 require '../src/classes/person'
-require 'rspec/autorun'
 
 describe Person do
   context 'before each test in the person class' do

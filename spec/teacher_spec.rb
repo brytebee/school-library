@@ -1,5 +1,4 @@
 require '../src/classes/teacher'
-require 'rspec/autorun'
 
 describe Teacher do
   context 'testing the teacher class' do

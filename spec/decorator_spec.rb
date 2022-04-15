@@ -1,5 +1,4 @@
 require '../src/classes/decorator'
-require 'rspec/autorun'
 
 describe Decorator do
   context 'when instantiated' do
