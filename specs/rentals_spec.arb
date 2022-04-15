@@ -1,4 +1,17 @@
-require_relative '../src/classes/rentals'
+require_relative '../src/classes/rental'
+require 'rspec/autorun'
 
-describe Rentals do
+describe Rental do
+  today = "2022-04-14"
+  context 'testing the rental class' do
+    before(:each) do
+      @firstRental = Rental.new(today, 0, 0)
+      @secondRental = Rental.new(today, 1, 1)
+      @thirdRental = Rental.new(today, 2, 2)
+    end
+
+    it 'has the class of Rental' do
+      expect(@firstRental.instance_of?(Rental)) == true
+    end
+  end
 end
