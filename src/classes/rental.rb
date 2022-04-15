@@ -1,5 +1,5 @@
 class Rental
-  attr_accessor :date, :person, :books
+  attr_accessor :date, :person, :books, :rentals
 
   # attr_reader :person, :book
 
@@ -7,9 +7,9 @@ class Rental
     @date = date
 
     @person = person
-    @person.rentals << self
+    # @person.rentals << self
 
     @books = book
-    @books.rentals << self
+    # @books.rentals << self
   end
 end
