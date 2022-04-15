@@ -17,5 +17,9 @@ describe Rental do
     it 'has the class of Rental' do
       expect(@secondRental.instance_of?(Rental)) == true
     end
+
+    it 'has the class of Rental' do
+      expect(@thirdRental.instance_of?(Rental)) == true
+    end
   end
 end
