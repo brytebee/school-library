@@ -9,8 +9,8 @@ describe Teacher do
     end
 
     it 'should take 3 parameters and return the Teacher object' do
-      expect(@teacher1.instance_of?(Teacher)) == true
-      expect(@teacher3.instance_of?(Teacher)) == true
+      expect(@teacher1.instance_of?(Teacher)).should be == true
+      expect(@teacher3.instance_of?(Teacher)).should be == true
     end
 
     it 'should use service return true' do
