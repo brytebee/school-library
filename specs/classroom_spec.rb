@@ -1,6 +1,4 @@
-require './src/classes/person'
 require './src/classes/student'
-require './src/classes/teacher'
 require './src/classes/classroom'
 
 describe Classroom do
