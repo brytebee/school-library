@@ -21,6 +21,14 @@ end
 
 describe Rental do
   context 'testing the rental class' do
-    
+    before(:each) do
+      @person = Person.new(23, 'Joe')
+      @book = Book.new('Alchemist', 'Chloe')
+      @book2 = Book.new('Rich Dad', 'Kiyosaki')
+      @book3 = Book.new('Think & Grow Rich', 'Napoleon Hill')
+      @date = Time.now.strftime('%F')
+      @rental = Rental.new(@date, @book, @person)
+      @rental2 = Rental.new(@date, @book2, @person)
+    end
   end
 end
