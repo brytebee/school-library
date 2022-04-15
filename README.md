@@ -25,8 +25,8 @@ In this project, I built a tool for a library to record the books in the library
 
 1. [Clone the project](https://github.com/brytebee/school-library.git)
 2. Installing the packages by running `bundle install`
-3. `cd` to `specs` directory
-4. Run
+3. `cd` to `spec` directory
+4. Run `ruby <filename>.rb` or `rspec`
 
 ### Prerequisites
 
