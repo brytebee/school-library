@@ -38,5 +38,14 @@ describe Rental do
     it 'has the class of Rental' do
       expect(@person.rentals.length).to be(2)
     end
+    
+    it 'has the class of Rental' do
+      expect(@rental.date).to eq(@date)
+    end
+    
+    it 'has the class of Rental' do
+      @rental3 = Rental.new(@date, @book3, @person)
+      expect(@person.rentals.length).to be(3)
+    end
   end
 end
