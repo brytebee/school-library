@@ -5,7 +5,7 @@ describe Book do
   context 'before each test in the book class' do
     before(:each) do
       @book = Book.new('America on Fire', 'Elizabeth Hinton')
-      @person = Person.new(18, 'jones', parent_permission: true )
+      @person = Person.new(18, 'jones', parent_permission: true)
     end
 
     describe '#new' do

@@ -15,6 +15,5 @@ describe Teacher do
     it 'should use service return true' do
       expect(@teacher1.can_use_services?) == true
     end
-
   end
 end
