@@ -1,25 +1,3 @@
-# require 'json'
-
-# class Rentalstore
-
-#   def parse_rentals(people, books)
-#     file = 'rentals.json'
-#     if File.exist? file
-#       JSON.parse(File.read(file)).map do |rental_json|
-#         book = books.find { |current_book| current_book.title == rental_json['book_title'] }
-#         person = people.find { |current_person| current_person.id == rental_json['person_id'].to_i }
-#         Rental.new(rental_json['date'], book, person)
-#       end
-#     else
-#       []
-#     end
-#   end
-
-#   def persist(rentals)
-#     File.write('rentals.json', JSON.generate(rentals)) unless rentals.empty?
-#   end
-# end
-
 module Rentalstore
   def load_rentals
     return [] unless File.exist?('rentals.json')

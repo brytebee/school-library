@@ -7,6 +7,7 @@ In this project, I built a tool for a library to record the books in the library
 - Save records of who borrowed a given book and when.
 
 ## Demo
+
 ![School_library](https://user-images.githubusercontent.com/27709832/162444449-0cf961e4-dedb-4499-81c2-86614e51e084.gif)
 
 ## Built With
@@ -19,6 +20,13 @@ In this project, I built a tool for a library to record the books in the library
 1. [Clone the project](https://github.com/brytebee/school-library.git)
 2. Installing the packages by running `bundle install`
 3. On the cmd run `ruby <filename>.rb`
+
+## Testing
+
+1. [Clone the project](https://github.com/brytebee/school-library.git)
+2. Installing the packages by running `bundle install`
+3. `cd` to `spec` directory
+4. Run `ruby <filename>.rb` or `rspec`
 
 ### Prerequisites
 

@@ -3,5 +3,10 @@
     "date" : "2021-09-07",
     "book_index" : 0,
     "person_index" : 0
+  },
+  {
+    "date" : "2021-04-09",
+    "book_index" : 1,
+    "person_index" : 2
   }
 ]
